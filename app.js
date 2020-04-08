@@ -32,7 +32,12 @@ class App {
     this.renderer.physicallyCorrectLights = true
     this.renderer.outputEncoding = THREE.sRGBEncoding
 
-    this.container.appendChild(this.renderer.domElement)
+    const progress = document.createElement('div')
+    const progressBar = document.createElement('div')
+    progress.classList.add('progress')
+    progress.appendChild(progressBar)
+
+    this.container.appendChild(progress)
 
     this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.001, 1000)
     this.camera.position.set(0, 0, 150)
@@ -51,6 +56,8 @@ class App {
     this.loader.load(
       trex,
       object => {
+        progress.remove()
+        this.container.appendChild(this.renderer.domElement)
         this.mesh = object.scene.children[0].children[0]
         this.mesh.rotation.z = Math.PI / 10
         this.mesh.rotation.x = -(Math.PI / 2)
@@ -61,7 +68,8 @@ class App {
         // })
 
         this.scene.add(this.mesh)
-      }
+      },
+      e => progressBar.style.width = (e.loaded / e.total * 100) + '%'
     )
   }
 
