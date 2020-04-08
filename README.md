@@ -8,7 +8,7 @@ Demo lives here: [https://trex-animation.salmi3d.now.sh](https://trex-animation.
 
 ## Origin
 
-[Yuri Artyukh](https://twitter.com/akella)
+Initial implementation by [Yuri Artyukh](https://twitter.com/akella)
 
 ## How to use
 
