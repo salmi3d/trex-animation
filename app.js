@@ -140,29 +140,37 @@ class App {
   }
 
   bindMouse() {
-    document.addEventListener('mousedown', e => {
-      gsap.to(this.mesh.position, {
-        duration: 1,
-        z: 50,
-      })
+    const on = ['mousedown', 'touchstart']
+    const off = ['mouseup', 'touchend']
 
-      gsap.to(this.settings, {
-        duration: 1,
-        progress: 1
+    on.forEach(e => {
+      window.addEventListener(e, () => {
+        gsap.to(this.mesh.position, {
+          duration: 1,
+          z: 50,
+        })
+
+        gsap.to(this.settings, {
+          duration: 1,
+          progress: 1
+        })
       })
     })
 
-    document.addEventListener('mouseup', e => {
-      gsap.to(this.mesh.position, {
-        duration: 1,
-        z: 0,
-      })
+    off.forEach(e => {
+      window.addEventListener(e, () => {
+        gsap.to(this.mesh.position, {
+          duration: 1,
+          z: 0,
+        })
 
-      gsap.to(this.settings, {
-        duration: 1,
-        progress: -1
+        gsap.to(this.settings, {
+          duration: 1,
+          progress: -1
+        })
       })
     })
+
   }
 
 }
