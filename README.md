@@ -1,6 +1,6 @@
 # 🦖 TRex animation
 
-TRex animation based on [Three.js](https://threejs.org/)
+TRex animation is built with [Three.js](https://threejs.org/)
 
 ## Demo
 

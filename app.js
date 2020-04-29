@@ -11,8 +11,8 @@ const OrbitControls = require('three-orbit-controls')(THREE)
 
 class App {
 
-  constructor(container) {
-    this.container = document.getElementById(container)
+  constructor({ el }) {
+    this.container = el
     this.width = this.container.offsetWidth
     this.height = this.container.offsetHeight
     this.time = 0
@@ -33,9 +33,7 @@ class App {
     this.renderer.outputEncoding = THREE.sRGBEncoding
 
     const progress = document.createElement('div')
-    const progressBar = document.createElement('div')
     progress.classList.add('progress')
-    progress.appendChild(progressBar)
 
     this.container.appendChild(progress)
 
@@ -69,7 +67,7 @@ class App {
 
         this.scene.add(this.mesh)
       },
-      e => progressBar.style.width = (e.loaded / e.total * 100) + '%'
+      e => progress.style.setProperty('--progress', e.loaded / e.total * 100)
     )
   }
 
@@ -175,4 +173,4 @@ class App {
 
 }
 
-new App('app')
+new App({ el: document.getElementById('app') })

@@ -17,16 +17,21 @@
         align-items: center;
       }
       .progress {
+        position: relative;
         width: 600px;
         height: 50px;
         background: #000;
         border: 2px solid #000;
       }
-      .progress > div {
-        width: 0;
-        height: 50px;
+      .progress::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: calc(1% * var(--progress, 0));
+        height: 100%;
         background: red;
         border: 0;
+        transition: width 200ms;
       }
     </style>
   </head>
